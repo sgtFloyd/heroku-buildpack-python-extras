@@ -23,7 +23,6 @@
 #
 # - The desired Python VM is available on the base system.
 # - Library dependencies are available on the base system.
-# - Django applications should not require any platform-specific configuration.
 
 # <hr />
 
@@ -97,33 +96,12 @@ set -e
 # Install specified Python version.
 source "$BIN_DIR/steps/python"
 
-# Pylibmc support.
-# See [`bin/steps/pylibmc`](pylibmc.html).
-if [ ! "$DISABLE_PYLIBMC" ]; then
-    source "$BIN_DIR/steps/pylibmc"
-fi
-
-# Install GEOS for GeoDjango
-if [ ! "$DISABLE_GEOS" ]; then
-    source "$BIN_DIR/steps/geos"
-fi
-
 # Install Pip dependencies
 source "$BIN_DIR/steps/pip"
-
-# Install required gems if there's a Gemfile.
-if [ -f Gemfile.lock ] && [ ! "$DISABLE_BUNDLER" ]; then
-    source "$BIN_DIR/steps/bundler"
-fi
 
 # Install required node packages if there's a package.json.
 if [ -f package.json ] && [ ! "$DISABLE_NPM" ]; then
     source "$BIN_DIR/steps/npm"
-fi
-
-# Run collectstatic if this is a Django app.
-if [ -f manage.py ] && [ ! "$DISABLE_COLLECTSTATIC" ]; then
-    source "$BIN_DIR/steps/collectstatic"
 fi
 
 # ### Finalize

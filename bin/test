@@ -20,24 +20,6 @@ testDetectWithEmptyReqs() {
     assertCapturedSuccess
 }
 
-testDetectDjango14() {
-    detect "django-1.4-skeleton"
-    assertCapturedEquals "Python/Django"
-    assertCapturedSuccess
-}
-
-testDetectDjango13() {
-    detect "django-1.3-skeleton"
-    assertCapturedEquals "Python/Django"
-    assertCapturedSuccess
-}
-
-testDetectNotDjangoWithSettings() {
-    detect "not-django"
-    assertCapturedEquals "Python"
-    assertCapturedSuccess
-}
-
 testDetectWithSetupPy() {
     detect "distutils"
     assertCapturedEquals "Python"
