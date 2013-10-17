@@ -37,4 +37,4 @@ fi
 
 # Install dependencies with Pip.
 puts_step "Installing dependencies using Pip ($PIP_VERSION)"
-pip install --use-mirrors -r requirements.txt --install-option="--prefix=$PIP_PREFIX" --exists-action=w --src="$BUILD_DIR" | cleanup_pip | indent
+pip install --use-mirrors -r requirements.txt --install-option="--prefix=$PIP_PREFIX" --install-option="--install-lib=$PIP_PREFIX/lib" --install-option="--install-scripts=$PIP_PREFIX/scripts" --exists-action=w --src="$BUILD_DIR" | cleanup_pip | indent
