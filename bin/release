@@ -5,13 +5,8 @@ BIN_DIR=$(cd $(dirname $0); pwd) # absolute path
 BUILD_DIR=$1
 NAME=$($BIN_DIR/detect $BUILD_DIR) || exit 1
 
-# Add configuration for Django projects
-[ -f "$BUILD_DIR/manage.py" ] || exit 0
-
 cat <<EOF
 ---
-addons:
-  - shared-database:5mb
-default_process_types:
-  web: python manage.py runserver 0.0.0.0:\$PORT --noreload
+config_vars:
+  PATH: "/app/python_packages/scripts:/app/.heroku/python/bin:node_modules/.bin:/app/.heroku/node/bin:/usr/local/bin:/usr/bin:/bin"
 EOF
